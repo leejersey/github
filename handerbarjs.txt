@@ -1,0 +1,33 @@
+handerbarjs
+
+<section id="tutorial"></section>
+
+<!-- 导入handlebars 相关JS //-->
+<script type='text/javascript' src="http://libs.baidu.com/jquery/1.7.1/jquery.min.js"></script>
+
+<script type='text/javascript' src="http://www.gbtags.com/gb/networks/uploads/87c22f7e-b475-4837-b781-eb74ae423041/js/handlebars-v1.3.0.js"></script>
+
+<!-- 定义handlebars的模板  //-->
+
+<script id="tutorial-template" type="text/x-handlebars-template"> 
+	<h1>{{title}}</h1>
+    <!-- 这里双大括号会自动转义HTML代码，而三括号则不转义HTML  //-->
+	<p>{{{author}}}</p>
+	<div>{{intro}}</div>
+</script>
+var jsondata = {
+			  'title':'handlebars使用入门', 
+              'author': '<span class="author">gbtags.com</span>', 
+              'intro': '基础JS模板引擎handlebars的初学者指南'
+              }
+1获取模版中定义的html结构
+var source = $("#tutorial-template").html(); 
+
+2编译html生成对应的js模版
+var template = Handlebars.compile(source);
+
+3使用js模版处理需要显示的json数据，生成对应的html内容
+var html = template(jsondata);
+
+4添加生成的html内容添加到页面中
+$('#tutorial').html(html);
